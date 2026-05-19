@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAM'D-ARAMCO Restaurant</title>
+    <style>
+        :root {
+            --bg-color: #0b111a;
+            --card-bg: #151d29;
+            --primary-accent: #10ac84; /* Green from the menu */
+            --secondary-accent: #48dbfb; /* Blue from the menu */
+            --text-main: #f1f2f6;
+            --text-muted: #a4b0be;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            background-color: var(--card-bg);
+            border-bottom: 3px solid var(--primary-accent);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 3em;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            text-transform: uppercase;
+        }
+
+        .rating {
+            color: #f1c40f;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .quick-info {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            color: var(--text-muted);
+            font-size: 0.9em;
+            flex-wrap: wrap;
+        }
+
+        .quick-info span {
+            background-color: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 15px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            background-color: var(--card-bg);
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: var(--primary-accent);
+            border-bottom: 2px solid var(--primary-accent);
+            padding-bottom: 10px;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            color: var(--text-muted);
+        }
+
+        .info-item strong {
+            color: var(--text-main);
+            display: block;
+        }
+
+        /* Menu Styles */
+        .menu-category {
+            margin-bottom: 30px;
+        }
+        
+        .menu-category-title {
+            color: var(--primary-accent);
+            text-align: right;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        .item-details {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .item-name {
+            color: var(--secondary-accent);
+            font-size: 1.2em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .item-name::before {
+            content: "❯";
+            color: var(--primary-accent);
+            margin-right: 8px;
+            font-size: 0.8em;
+        }
+
+        .item-desc {
+            color: var(--text-muted);
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+
+        .item-price-cal {
+            text-align: right;
+            min-width: 80px;
+        }
+
+        .price {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .currency {
+            font-size: 0.6em;
+            vertical-align: top;
+        }
+
+        .calories {
+            color: var(--secondary-accent);
+            font-size: 0.75em;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .featured-image {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+
+        /* Review Styles */
+        .review {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 15px 0;
+        }
+        
+        .review:last-child {
+            border-bottom: none;
+        }
+
+        .reviewer-name {
+            font-weight: bold;
+            color: var(--secondary-accent);
+        }
+
+        .review-meta {
+            font-size: 0.8em;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-style: italic;
+        }
+
+        .owner-response {
+            background-color: rgba(16, 172, 132, 0.1);
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-left: 3px solid var(--primary-accent);
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>JAM'D</h1>
+        <div class="rating">
+            ★★★★★ 4.7 <span style="color: var(--text-muted); font-size: 0.8em;">(37 Reviews)</span>
+        </div>
+        <div class="quick-info">
+            <span>SAR 20–40</span>
+            <span>Restaurant</span>
+            <span>✓ Dine-in</span>
+            <span>✓ Takeaway</span>
+            <span>✓ Delivery</span>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section id="overview">
+            <h2>Overview & Location</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>📍 Address</strong>
+                    Gharb Al Dhahran, 3671, 8296<br>
+                    Dhahran 34473
+                </div>
+                <div class="info-item">
+                    <strong>🕒 Hours</strong>
+                    Opens 11:00 AM (Tue)
+                </div>
+                <div class="info-item">
+                    <strong>📞 Contact</strong>
+                    050 629 6677<br>
+                    <a href="https://instagram.com" style="color: var(--secondary-accent); text-decoration: none;">Instagram</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu">
+            <h2>Menu</h2>
+            
+            <div class="menu-category">
+                <div class="menu-category-title">Burgers <span>🍔</span></div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <div class="item-name">The Classic</div>
+                        <div class="item-desc">Beef patty, cheese, special homemade sauce, pickles, chopped onions, potato bun.</div>
+                    </div>
+                    <div class="item-price-cal">
+                        <div class="price">29<span class="currency">SAR</span></div>
+                        <div class="calories">591 CAL</div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-details">
+                        <div class="item-name">The Mushroom</div>
+                        <div class="item-desc">Beef patty, homemade black pepper aioli sauce, grilled mushrooms, caramelized onions.</div>
+                    </div>
+                    <div class="item-price-cal">
+                        <div class="price">32<span class="currency">SAR</span></div>
+                        <div class="calories">681 CAL</div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-details">
+                        <div class="item-name">The Truffle</div>
+                        <div class="item-desc">Beef patty, house truffle cheese sauce, crispy onions.</div>
+                    </div>
+                    <div class="item-price-cal">
+                        <div class="price">35<span class="currency">SAR</span></div>
+                        <div class="calories">456 CAL</div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-details">
+                        <div class="item-name">The Crispy</div>
+                        <div class="item-desc">Crispy chicken breast, spicy j sauce, cheese, shredded lettuce.</div>
+                    </div>
+                    <div class="item-price-cal">
+                        <div class="price">26<span class="currency">SAR</span></div>
+                        <div class="calories">496 CAL</div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-details">
+                        <div class="item-name">The Nashville</div>
+                        <div class="item-desc">Crispy chicken, dipped in nashville sauce, honey glaze, slaw, pickles.</div>
+                    </div>
+                    <div class="item-price-cal">
+                        <div class="price">29<span class="currency">SAR</span></div>
+                        <div class="calories">446 CAL</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <div class="menu-category-title">Sides <span>🍟</span></div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <div class="item-name">Chic Bites</div>
+                        <div class="item-desc">Spicy chicken bites, special house sauce.</div>
+                    </div>
+                    <div class="item-price-cal">
+                        <div class="price">18<span class="currency">SAR</span></div>
+                        <div class="calories">196 CAL</div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-details">
+                        <div class="item-name">Jam Jam Chips</div>
+                        <div class="item-desc">Deep seasoned and eggplant shell, parmesan, house dipping sauce.</div>
+                    </div>
+                    <div class="item-price-cal">
+                        <div class="price">12<span class="currency">SAR</span></div>
+                        <div class="calories">396 CAL</div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-details">
+                        <div class="item-name">Nashville Tenders</div>
+                        <div class="item-desc">3 tender strips, marinated chicken fillet, nashville sauce.</div>
+                    </div>
+                    <div class="item-price-cal">
+                        <div class="price">22<span class="currency">SAR</span></div>
+                        <div class="calories">456 CAL</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-category">
+                <div class="menu-category-title">Sauces & Street <span>🥣</span></div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <div class="item-name">Choice Of Your Own</div>
+                        <div class="item-desc">(J, HF, VOL, TR, Spicy TM, Honey, Nashville, Hot Sauce).</div>
+                    </div>
+                    <div class="item-price-cal">
+                        <div class="price">3<span class="currency">SAR</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-details">
+                        <div class="item-name">Like it Messy</div>
+                    </div>
+                    <div class="item-price-cal">
+                        <div class="price">17<span class="currency">SAR</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews">
+            <h2>Customer Reviews</h2>
+            
+            <div class="review">
+                <div class="reviewer-name">Engr. Ace</div>
+                <div class="review-meta">★★★★★ · Local Guide · 4 months ago</div>
+                <div class="review-text">"I tried two checkin burgers the mushroom and the nashville (a bet spicy). Both were great and what made the experience was the friendly register (Abdulaziz) thanks to him and all the stuff for the amazing experience. Won’t be my last visit for sure"</div>
+                <div class="owner-response">
+                    <strong>Response from the owner:</strong> Thank you for the kind words! We’re glad you enjoyed the mushroom and Nashville burgers, and we’ll be sure to pass your compliments to Abdulaziz and the team. Looking forward to welcoming you back soon!
+                </div>
+            </div>
+
+            <div class="review">
+                <div class="reviewer-name">_Fishy _</div>
+                <div class="review-meta">★★★★★ · 2 months ago</div>
+                <div class="review-text">"REALLY GOOD SERVICE, and exceptional food. Order type: Dine in"</div>
+                <div class="owner-response">
+                    <strong>Response from the owner:</strong> "Thank you for the support. We’re really happy you enjoyed the food and service. We know we still have a lot to learn, so we’ll keep working quietly to get even better for your next visit."
+                </div>
+            </div>
+
+            <div class="review">
+                <div class="reviewer-name">Fadi Bandak</div>
+                <div class="review-meta">★★★★★ · Local Guide · 5 months ago</div>
+                <div class="review-text">"The burger and fries are nice and tasty and the ambiance is great also have the menu arabic version too"</div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
